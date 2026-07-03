@@ -93,13 +93,12 @@ SSA/
 │   └── data/
 │
 ├── ssa-dashboard/
-│   ├── src/
-│   ├── public/
-│   ├── package.json
-│   ├── vite.config.js
-│   └── README.md
-│
-└── venv/
+    ├── src/
+    ├── public/
+    ├── package.json
+    ├── vite.config.js
+    └── README.md
+
 ```
 
 ---
