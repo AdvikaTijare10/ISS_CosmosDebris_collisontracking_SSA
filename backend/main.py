@@ -18,8 +18,10 @@ iss_obj=return_EarthSatellite_obj_iss(satName,catnr,line1,line2)
 
 satellites=get_tle_debris(urlDebris)
 debris_obj=return_EarthSatellite_obj_debris(satellites)
-ts=load.timescale()
+
+ts=load.timescale()  # cerates a timescale obj required for all time related calculations
 t=ts.now()
+
 iss_apogee_perigee=calculate_apogee_perigee_iss(iss_obj,t)
 
 debris_apogee_perigee=calculate_apogee_perigee_debris(debris_obj,t)
@@ -28,18 +30,18 @@ debris_apogee_perigee=calculate_apogee_perigee_debris(debris_obj,t)
 close_debris=altitude_filter(iss_apogee_perigee,debris_apogee_perigee)
 
 
-start = datetime.now(timezone.utc)
-
+# start = datetime.now(timezone.utc)
+start=ts.now()
 dist_prop = []
 
-for i in range(0, 24*60, 5):
-    t = ts.from_datetime(start + timedelta(minutes=i))
-
+for i in range(0, 24*60, 5): #1day to min
+    # t = ts.from_datetime(start + timedelta(minutes=i))
+    t=start+(i/1440.0)
     x_y_z_coord = calculate_xyz(iss_apogee_perigee, close_debris, t)
     distancee = distances_between(x_y_z_coord)
 
     dist_prop.append({
-        "time": t.utc_iso(),
+        "time": t.utc_iso(),  #year-month-day format
         "distances": distancee
     })
 minimums = {}

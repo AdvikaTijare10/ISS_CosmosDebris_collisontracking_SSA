@@ -1,10 +1,11 @@
 from skyfield.api import load
 from skyfield.elementslib import osculating_elements_of
 
+earth_radius=6378.14
 
 def calculate_apogee_perigee_iss(iss_obj,t):
    
-    earth_radius=6378.14
+   
     position=iss_obj["EarthSatelliteObj"].at(t)
     elements=osculating_elements_of(position)
     semi_major_axis=elements.semi_major_axis.km
@@ -16,7 +17,7 @@ def calculate_apogee_perigee_iss(iss_obj,t):
    
 
 def calculate_apogee_perigee_debris(debris_obj,t):
-    earth_radius=6378.14
+ 
     apogee_perigee_calc=[]
     for debris in debris_obj:
         position=debris["EarthSatelliteObj"].at(t)

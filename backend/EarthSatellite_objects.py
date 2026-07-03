@@ -11,14 +11,12 @@ def return_EarthSatellite_obj_iss(satName,catnr,line1,line2):
         "EarthSatelliteObj": get_EarthSatellite_obj(line1, line2, satName)
     }
 
-
-
-def return_EarthSatellite_obj_debris(satellites):
+def return_EarthSatellite_obj_debris(debri):
     debris_obj=[]
-    for sat in satellites:
+    for debris in debri:
         debris_obj.append({
-            "name":sat["objName"],
-            "catnr":sat["catnr"],
-            "EarthSatelliteObj":get_EarthSatellite_obj(sat["line1"],sat["line2"],sat["objName"])
+            "name":debris["objName"],
+            "catnr":debris["catnr"],
+            "EarthSatelliteObj":get_EarthSatellite_obj(debris["line1"],debris["line2"],debris["objName"])
         })
     return debris_obj
